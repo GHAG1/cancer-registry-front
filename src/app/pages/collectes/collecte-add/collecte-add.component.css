@@ -1,0 +1,21 @@
+.stepper-container {
+  height : 600px;
+  background-color: white;
+}
+
+::ng-deep mat-stepper {
+  height:100%;
+  background-color: rgba(211, 209, 209, 0.82);
+}
+
+::ng-deep form {
+  height:100%;
+}
+
+::ng-deep mat-error {
+  color: red
+}
+
+h1 {
+  color: white
+}

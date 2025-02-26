@@ -1,0 +1,7 @@
+export const RENSEIGNE = "renseigne"
+export const NON_RENSEIGNE = "nonRenseigne"
+export const NON_PRECIS = "nonPrecis"
+export const NON = "non"
+export const OUI = "oui"
+export const MASCULIN = "masculin"
+export const FEMININ = "feminin"

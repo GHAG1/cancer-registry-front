@@ -1,1 +1,315 @@
-<p>collecte-add works!</p>
+<mat-toolbar class="bg-primary p-4">
+  <h1>Nouvelle collecte</h1>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="stepper-container p-3">
+  <mat-stepper [linear]="isLinear"  #stepper>
+    <mat-step [stepControl]="form">
+      <form [formGroup]="form">
+        <ng-template matStepLabel>Identification des sources d'information</ng-template>
+        <div class="form-group row mt-4">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Prénom - Nom du registraire</mat-label>
+              <input matInput formControlName="nomCompletRegistraire">
+              <mat-error *ngIf="form.get('nomCompletRegistraire')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Prénom - Nom du Médecin référent</mat-label>
+              <input matInput formControlName="nomCompletPatient">
+              <mat-error *ngIf="form.get('nomCompletPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Date d'ouverture du dossier du patient</mat-label>
+              <input matInput formControlName="dateOuvertureDossier" type="date">
+              <mat-error *ngIf="form.get('dateOuvertureDossier')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Numéro du dossier clinique du patient</mat-label>
+              <input matInput formControlName="numeroDossier">
+              <mat-error *ngIf="form.get('numeroDossier')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <div class="w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Type de structure</mat-label><br/>
+            <mat-radio-group formControlName="typeStructure" >
+              <mat-radio-button value="public">Public</mat-radio-button>
+              <mat-radio-button value="prive">Privé</mat-radio-button>
+              <mat-radio-button value="autre">Autre</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" *ngIf="typeStructureText != 'autre'">
+            <mat-form-field class="w-100">
+              <mat-label>{{ typeStructureText | formatStructure }}</mat-label>
+              <mat-select formControlName="typeStructureValue">
+                <mat-option *ngFor="let type of typeStructures" [value]="type.id">{{ type.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('typeStructureValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="typeStructureText == 'autre'">
+            <mat-form-field class="w-100">
+              <mat-label>Autre structure</mat-label>
+              <input matInput formControlName="typeStructureValue">
+              <mat-error *ngIf="form.get('typeStructureValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" *ngIf="!autreService">
+            <mat-form-field class="w-100">
+              <mat-label>Service</mat-label>
+              <mat-select formControlName="serviceValue">
+                <mat-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('serviceValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreService">
+            <mat-form-field class="w-100">
+              <mat-label>Autre service à préciser</mat-label>
+              <input matInput formControlName="serviceValue">
+              <mat-error *ngIf="form.get('serviceValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button mat-raised-button mat-dialog-close color="accent">Fermer</button>
+          <button mat-raised-button matStepperNext color="primary" class="mx-2" [disabled]="form.invalid">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondForm" label="Identification du patient">
+      <form [formGroup]="secondForm">
+        <div class="form-group row mt-3">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Prénom - Nom du patient</mat-label>
+              <input matInput formControlName="nomComplet">
+              <mat-error *ngIf="secondForm.get('nomComplet')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Âge au diagnostic</mat-label>
+              <input matInput formControlName="age" type="number">
+              <mat-error *ngIf="secondForm.get('age')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <div class="col-md-6 col-sm-12">
+            <div class="w-100">
+              <mat-label>Sexe</mat-label><br/>
+              <mat-radio-group formControlName="sexe" >
+                <mat-radio-button [value]=MASCULIN>Masculin</mat-radio-button>
+                <mat-radio-button [value]=FEMININ>Féminin</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Quartier ou village de résidence</mat-label>
+              <input matInput formControlName="quartierOuVillage">
+              <mat-error *ngIf="secondForm.get('quartierOuVillage')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col" *ngIf="!autreNationalite">
+            <mat-form-field class="w-100">
+              <mat-label>Nationalité</mat-label>
+              <mat-select formControlName="nationaliteValue">
+                <mat-option *ngFor="let nationalite of nationalites" [value]="nationalite.id">{{ nationalite.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('nationaliteValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreNationalite">
+            <mat-form-field class="w-100">
+              <mat-label>Autre nationalite à préciser</mat-label>
+              <input matInput formControlName="nationaliteValue">
+              <mat-error *ngIf="secondForm.get('nationaliteValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Situation matrimoniale</mat-label>
+              <mat-select formControlName="situationMatrimoniale">
+                <mat-option *ngFor="let situationMatrimoniale of situationMatrimoniales" [value]="situationMatrimoniale.id">{{ situationMatrimoniale.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('situationMatrimoniale')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Région</mat-label>
+              <mat-select formControlName="region">
+                <mat-option *ngFor="let region of regions" [value]="region.id">{{ region.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('region')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Département</mat-label>
+              <mat-select formControlName="departement">
+                <mat-option *ngFor="let departement of departements" [value]="departement.id">{{ departement.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('departement')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Mode de vie</mat-label>
+              <mat-select formControlName="modeDeVie" multiple>
+                <mat-option *ngFor="let modeDeVie of modeDeVies" [value]="modeDeVie.id">{{ modeDeVie.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('modeDeVie')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <div class="w-100">
+              <mat-label>Exposition à des toxiques</mat-label><br/>
+              <mat-radio-group formControlName="expositionToxique" class="d-flex justify-content-between" >
+                <mat-radio-button [value]=OUI>Oui</mat-radio-button>
+                <mat-radio-button [value]=NON>Non</mat-radio-button>
+                <mat-radio-button [value]=NON_PRECIS>Non précisé</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button mat-raised-button matStepperPrevious color="accent">Retour</button>
+          <button mat-raised-button color="primary" class="mx-2" (click)="save()" [disabled]="secondForm.invalid">Valider</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdForm" label="Exhaustivité du renseignement des données dans les dossiers">
+      <form [formGroup]="thirdForm">
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Numéro Carte Nationale d'Identité du patient</mat-label><br/>
+            <mat-radio-group formControlName="cniPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('cniPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+          <div class="col w-100">
+            <mat-label>Numéro de téléphone du patient</mat-label><br/>
+            <mat-radio-group formControlName="contactPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('contactPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Numéro de téléphone d'un proche du patient</mat-label><br/>
+            <mat-radio-group formControlName="contactProchePatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('contactProchePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+          <div class="col w-100">
+            <mat-label>Adresse du patient</mat-label><br/>
+            <mat-radio-group formControlName="adressePatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('adressePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Consentement recueilli</mat-label><br/>
+            <mat-radio-group formControlName="consentementPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=OUI>Oui</mat-radio-button>
+              <mat-radio-button [value]=NON>Non</mat-radio-button>
+              <mat-radio-button [value]=NON_PRECIS>Non précisé</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('consentementPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+          <div class="col w-100">
+            <mat-label>Stade clinique du patient (Stade OMS)</mat-label><br/>
+            <mat-radio-group formControlName="stadePatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('stadePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Compte rendu des résultats</mat-label><br/>
+            <mat-radio-group formControlName="compteRenduPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('compteRenduPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+          <div class="col w-100">
+            <mat-label>Date du diagnostic</mat-label><br/>
+            <mat-radio-group formControlName="dateDiagnosticPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateDiagnosticPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Date de début du traitement</mat-label><br/>
+            <mat-radio-group formControlName="dateDebutConsultationPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateDebutConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+          <div class="col w-100">
+            <mat-label>Date de la consultation suivante</mat-label><br/>
+            <mat-radio-group formControlName="dateSuivanteConsultationPatient" class="d-flex justify-content-between w-75" >
+              <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
+              <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateSuivanteConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+          </div>
+        </div>
+        <hr>
+
+        <div class="d-flex justify-content-between mt-3">
+          <button mat-raised-button matStepperPrevious color="accent">Retour</button>
+          <button mat-raised-button color="primary" class="mx-2" (click)="save()" [disabled]="thirdForm.invalid">Valider</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
