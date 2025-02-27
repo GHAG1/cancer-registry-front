@@ -1,4 +1,4 @@
-[
+export const nonTraitements = [
   {"id": 12, "name": "Diagnostic incomplet ou en cours"},
   {"id": 13, "name": "Pas de moyens financiers"},
   {"id": 14, "name": "Traitement traditionnel"},

@@ -1,4 +1,4 @@
-[
+export const typeHistologique = [
   {"id": 1, "name": "Carcinome épidermoïde"},
   {"id": 2, "name": "Carcinome neuroendocrinien"},
   {"id": 3, "name": "Adénocarcinome"},

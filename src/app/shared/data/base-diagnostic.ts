@@ -1,4 +1,4 @@
-[
+export const baseDiagnostic = [
   {"id": 1, "name": "Radiologique"},
   {"id": 2, "name": "Histologique"},
   {"id": 3, "name": "Clinique"},

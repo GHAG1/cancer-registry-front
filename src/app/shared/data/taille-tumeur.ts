@@ -1,4 +1,4 @@
-[
+export const tailleTumeurs =[
   {"id": 1, "name": "T1"},
   {"id": 2, "name": "T2"},
   {"id": 3, "name": "T3"},

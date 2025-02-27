@@ -1,4 +1,4 @@
-[
+export const regions = [
   {"id": 1, "name": "Dakar"},
   {"id": 2, "name": "Thiès"},
   {"id": 3, "name": "Diourbel"},
@@ -12,6 +12,5 @@
   {"id": 11, "name": "Kolda"},
   {"id": 12, "name": "Tambacounda"},
   {"id": 13, "name": "Ziguinchor"},
-  {"id": 14, "name": "Sédhiou"},
-  {"id": 15, "name": "Non précisé"}
+  {"id": 14, "name": "Sédhiou"}
 ]

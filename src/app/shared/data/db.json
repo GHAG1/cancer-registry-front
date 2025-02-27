@@ -1,0 +1,666 @@
+{
+  "collectes": [
+    {
+      "id": "1",
+      "identification": {
+        "nomCompletRegistraire": "test",
+        "nomCompletMedecinReferent": "test",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 4,
+          "name": "Cardiologie"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test",
+        "age": 10,
+        "sexe": "masculin",
+        "quartierOuVillage": "19ndn",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 2,
+          "name": "Mauritanienne"
+        },
+        "region": {
+          "id": 2,
+          "name": "Thiès"
+        },
+        "departement": 1,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 1,
+          "name": "Marié(e)"
+        },
+        "modeDeVie": [
+          5
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "2000-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 2,
+          "name": "Carcinome neuroendocrinien"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 1,
+          "name": "Radiologique"
+        },
+        "grade": 1,
+        "ctnmTailleTumeur": 1,
+        "ctnmAtteinteGanglionnaire": 6,
+        "ctnmMetastase": 9,
+        "stadeOms": 12,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "non",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "oui",
+        "existenceMetastaseValue": {
+          "id": 2,
+          "name": "Hypopharynx"
+        },
+        "existenceMetastaseAutreValue": "",
+        "traitement": "",
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-12-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 2,
+          "name": "Rémission partielle"
+        },
+        "perduDeVue": "oui",
+        "perduDeVueValue": "",
+        "infosComplementaires": ""
+      }
+    },
+    {
+      "id": 2,
+      "identification": {
+        "nomCompletRegistraire": "test2",
+        "nomCompletMedecinReferent": "test2",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 4,
+          "name": "Cardiologie"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test2",
+        "age": 12,
+        "sexe": "masculin",
+        "quartierOuVillage": "test2",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 1,
+          "name": "Sénégalaise"
+        },
+        "region": {
+          "id": 1,
+          "name": "Dakar"
+        },
+        "departement": 1,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 2,
+          "name": "Célibataire"
+        },
+        "modeDeVie": [
+          3,
+          4
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "2000-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 1,
+          "name": "Carcinome épidermoïde"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 2,
+          "name": "Histologique"
+        },
+        "grade": 1,
+        "ctnmTailleTumeur": 1,
+        "ctnmAtteinteGanglionnaire": 7,
+        "ctnmMetastase": 9,
+        "stadeOms": 15,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "nonPrecis",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "nonPrecis",
+        "existenceMetastaseValue": "",
+        "existenceMetastaseAutreValue": "",
+        "traitement": "",
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-12-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 1,
+          "name": "Rémission complète"
+        },
+        "perduDeVue": "non",
+        "perduDeVueValue": "",
+        "infosComplementaires": "test2"
+      }
+    },
+    {
+      "id": 3,
+      "identification": {
+        "nomCompletRegistraire": "test 3",
+        "nomCompletMedecinReferent": "test 3",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 4,
+          "name": "Cardiologie"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test 3",
+        "age": 10,
+        "sexe": "masculin",
+        "quartierOuVillage": "test 3",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 1,
+          "name": "Sénégalaise"
+        },
+        "region": {
+          "id": 4,
+          "name": "Fatick"
+        },
+        "departement": 1,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 2,
+          "name": "Célibataire"
+        },
+        "modeDeVie": [
+          5
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "2000-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 1,
+          "name": "Carcinome épidermoïde"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 1,
+          "name": "Radiologique"
+        },
+        "grade": 4,
+        "ctnmTailleTumeur": 2,
+        "ctnmAtteinteGanglionnaire": 6,
+        "ctnmMetastase": 9,
+        "stadeOms": 13,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "oui",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "oui",
+        "existenceMetastaseValue": {
+          "id": 3,
+          "name": "Larynx"
+        },
+        "existenceMetastaseAutreValue": "",
+        "traitement": [
+          {
+            "id": 4,
+            "name": "Radiothérapie"
+          }
+        ],
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-12-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 2,
+          "name": "Rémission partielle"
+        },
+        "perduDeVue": "oui",
+        "perduDeVueValue": "",
+        "infosComplementaires": ""
+      }
+    },
+    {
+      "id": 4,
+      "identification": {
+        "nomCompletRegistraire": "test4",
+        "nomCompletMedecinReferent": "test4",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 3,
+          "name": "Cancérologie"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test4",
+        "age": 12,
+        "sexe": "masculin",
+        "quartierOuVillage": "test4",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 1,
+          "name": "Sénégalaise"
+        },
+        "region": {
+          "id": 5,
+          "name": "Kaffrine"
+        },
+        "departement": 2,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 1,
+          "name": "Marié(e)"
+        },
+        "modeDeVie": [
+          2
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "2000-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 1,
+          "name": "Carcinome épidermoïde"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 1,
+          "name": "Radiologique"
+        },
+        "grade": 1,
+        "ctnmTailleTumeur": 2,
+        "ctnmAtteinteGanglionnaire": 6,
+        "ctnmMetastase": 10,
+        "stadeOms": 14,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "oui",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "oui",
+        "existenceMetastaseValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "existenceMetastaseAutreValue": "",
+        "traitement": [
+          {
+            "id": 4,
+            "name": "Radiothérapie"
+          }
+        ],
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-12-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 1,
+          "name": "Rémission complète"
+        },
+        "perduDeVue": "oui",
+        "perduDeVueValue": "",
+        "infosComplementaires": "test4"
+      }
+    },
+    {
+      "id": 5,
+      "identification": {
+        "nomCompletRegistraire": "test5",
+        "nomCompletMedecinReferent": "test5",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 5,
+          "name": "Chirurgie générale"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test5",
+        "age": 12,
+        "sexe": "masculin",
+        "quartierOuVillage": "test5",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 1,
+          "name": "Sénégalaise"
+        },
+        "region": {
+          "id": 4,
+          "name": "Fatick"
+        },
+        "departement": 1,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 1,
+          "name": "Marié(e)"
+        },
+        "modeDeVie": [
+          4
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "0200-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 1,
+          "name": "Carcinome épidermoïde"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 1,
+          "name": "Radiologique"
+        },
+        "grade": 1,
+        "ctnmTailleTumeur": 1,
+        "ctnmAtteinteGanglionnaire": 6,
+        "ctnmMetastase": 9,
+        "stadeOms": 13,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "oui",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "oui",
+        "existenceMetastaseValue": {
+          "id": 2,
+          "name": "Hypopharynx"
+        },
+        "existenceMetastaseAutreValue": "",
+        "traitement": "",
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-12-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 1,
+          "name": "Rémission complète"
+        },
+        "perduDeVue": "oui",
+        "perduDeVueValue": "",
+        "infosComplementaires": ""
+      }
+    },
+    {
+      "id": "70dd",
+      "identification": {
+        "nomCompletRegistraire": "test 6",
+        "nomCompletMedecinReferent": "test 6",
+        "dateOuvertureDossier": "2000-12-10",
+        "numeroDossier": "0000",
+        "typeStructure": "public",
+        "typeStructureValue": {
+          "id": 1,
+          "name": "Hôpital Dalal Jamm"
+        },
+        "service": false,
+        "serviceValue": {
+          "id": 5,
+          "name": "Chirurgie générale"
+        }
+      },
+      "infosPatient": {
+        "nomComplet": "test 6",
+        "age": 12,
+        "sexe": "masculin",
+        "quartierOuVillage": "test 6",
+        "nationalite": false,
+        "nationaliteValue": {
+          "id": 1,
+          "name": "Sénégalaise"
+        },
+        "region": {
+          "id": 5,
+          "name": "Kaffrine"
+        },
+        "departement": 1,
+        "situationMatrimoniale": false,
+        "situationMatrimonialeValue": {
+          "id": 1,
+          "name": "Marié(e)"
+        },
+        "modeDeVie": [
+          4
+        ],
+        "expositionToxique": "oui"
+      },
+      "exhaustivite": {
+        "cniPatient": "nonRenseigne",
+        "contactPatient": "nonRenseigne",
+        "contactProchePatient": "nonRenseigne",
+        "adressePatient": "renseigne",
+        "consentementPatient": "oui",
+        "stadePatient": "nonRenseigne",
+        "compteRenduPatient": "nonRenseigne",
+        "dateDiagnosticPatient": "renseigne",
+        "dateDebutConsultationPatient": "nonRenseigne",
+        "dateSuivanteConsultationPatient": "nonRenseigne"
+      },
+      "tumeur": {
+        "dateDiagnostic": "2000-12-10",
+        "localisationCancer": "",
+        "localisationCancerValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "typeHistologique": "",
+        "typeHistologiqueValue": {
+          "id": 1,
+          "name": "Carcinome épidermoïde"
+        },
+        "baseDiagnostic": "",
+        "baseDiagnosticValue": {
+          "id": 1,
+          "name": "Radiologique"
+        },
+        "grade": 1,
+        "ctnmTailleTumeur": 1,
+        "ctnmAtteinteGanglionnaire": 6,
+        "ctnmMetastase": 10,
+        "stadeOms": 12,
+        "recepteurOestrogene": "oui",
+        "recepteurOestrogeneValue": null,
+        "recepteurProgesterone": "oui",
+        "recepteurProgesteroneValue": null,
+        "recepteurHer2": "oui",
+        "recepteurHer2Value": null,
+        "tripleNegatif": "oui",
+        "statutCancer": "primitif",
+        "metastaseAutre": "",
+        "existenceMetastase": "oui",
+        "existenceMetastaseValue": {
+          "id": 1,
+          "name": "Cerveau"
+        },
+        "existenceMetastaseAutreValue": "",
+        "traitement": "",
+        "dateDebutTraitement": "",
+        "lieuTraitement": "",
+        "causeNonDebutTraitement": ""
+      },
+      "suiviPatient": {
+        "date": "2000-11-10",
+        "etatPatient": "",
+        "etatPatientValue": {
+          "id": 2,
+          "name": "Rémission partielle"
+        },
+        "perduDeVue": "oui",
+        "perduDeVueValue": "",
+        "infosComplementaires": ""
+      }
+    }
+  ]
+}

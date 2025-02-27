@@ -1,4 +1,4 @@
-[
+export const nationalites = [
   {"id": 1, "name": "Sénégalaise"},
   {"id": 2, "name": "Mauritanienne"},
   {"id": 3, "name": "Gambienne"},

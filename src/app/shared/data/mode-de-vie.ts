@@ -1,4 +1,4 @@
-[
+export const modeDeVies = [
   {"id": 1, "name": "Mauvaise alimentation"},
   {"id": 2, "name": "Tabagisme"},
   {"id": 3, "name": "Inactivité physique"},
