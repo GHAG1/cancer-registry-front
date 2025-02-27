@@ -5,9 +5,9 @@
 
 <div class="stepper-container p-3">
   <mat-stepper [linear]="isLinear"  #stepper>
-    <mat-step [stepControl]="form">
+    <mat-step [stepControl]="form" label="Sources information" >
       <form [formGroup]="form">
-        <ng-template matStepLabel>Identification des sources d'information</ng-template>
+        <h4 class="mt-1">Identification des sources d'information</h4>
         <div class="form-group row mt-4">
           <div class="col-md-6 col-sm-12">
             <mat-form-field class="w-100">
@@ -19,8 +19,8 @@
           <div class="col-md-6 col-sm-12">
             <mat-form-field class="w-100">
               <mat-label>Prénom - Nom du Médecin référent</mat-label>
-              <input matInput formControlName="nomCompletPatient">
-              <mat-error *ngIf="form.get('nomCompletPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+              <input matInput formControlName="nomCompletMedecinReferent">
+              <mat-error *ngIf="form.get('nomCompletMedecinReferent')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -55,7 +55,7 @@
             <mat-form-field class="w-100">
               <mat-label>{{ typeStructureText | formatStructure }}</mat-label>
               <mat-select formControlName="typeStructureValue">
-                <mat-option *ngFor="let type of typeStructures" [value]="type.id">{{ type.name }}</mat-option>
+                <mat-option *ngFor="let type of typeStructures" [value]="type">{{ type.name }}</mat-option>
               </mat-select>
               <mat-error *ngIf="form.get('typeStructureValue')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
@@ -68,12 +68,18 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="row mt-2">
+          <div class="w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Service</mat-label><br/>
+            <mat-checkbox formControlName="service">Autre</mat-checkbox>
+          </div>
+        </div>
         <div class="row">
           <div class="col" *ngIf="!autreService">
             <mat-form-field class="w-100">
               <mat-label>Service</mat-label>
               <mat-select formControlName="serviceValue">
-                <mat-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</mat-option>
+                <mat-option *ngFor="let service of services" [value]="service">{{ service.name }}</mat-option>
               </mat-select>
               <mat-error *ngIf="form.get('serviceValue')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
@@ -92,7 +98,8 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondForm" label="Identification du patient">
+    <mat-step [stepControl]="secondForm" label="Identification patient">
+      <h4 class="mt-1">Identification du patient</h4>
       <form [formGroup]="secondForm">
         <div class="form-group row mt-3">
           <div class="col-md-6 col-sm-12">
@@ -129,11 +136,21 @@
           </div>
         </div>
         <div class="row mt-2">
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Nationalité</mat-label><br/>
+            <mat-checkbox formControlName="nationalite">Autre</mat-checkbox>
+          </div>
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Situation Matrimoniale</mat-label><br/>
+            <mat-checkbox formControlName="situationMatrimoniale">Autre</mat-checkbox>
+          </div>
+        </div>
+        <div class="row mt-2">
           <div class="col" *ngIf="!autreNationalite">
             <mat-form-field class="w-100">
               <mat-label>Nationalité</mat-label>
               <mat-select formControlName="nationaliteValue">
-                <mat-option *ngFor="let nationalite of nationalites" [value]="nationalite.id">{{ nationalite.name }}</mat-option>
+                <mat-option *ngFor="let nationalite of nationalites" [value]="nationalite">{{ nationalite.name }}</mat-option>
               </mat-select>
               <mat-error *ngIf="secondForm.get('nationaliteValue')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
@@ -145,13 +162,20 @@
               <mat-error *ngIf="secondForm.get('nationaliteValue')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
           </div>
-          <div class="col">
+          <div class="col" *ngIf="!autreSituationMatrimoniale">
             <mat-form-field class="w-100">
               <mat-label>Situation matrimoniale</mat-label>
-              <mat-select formControlName="situationMatrimoniale">
-                <mat-option *ngFor="let situationMatrimoniale of situationMatrimoniales" [value]="situationMatrimoniale.id">{{ situationMatrimoniale.name }}</mat-option>
+              <mat-select formControlName="situationMatrimonialeValue">
+                <mat-option *ngFor="let situationMatrimoniale of situationMatrimoniales" [value]="situationMatrimoniale">{{ situationMatrimoniale.name }}</mat-option>
               </mat-select>
-              <mat-error *ngIf="secondForm.get('situationMatrimoniale')?.hasError('required')">Ce champ est requis.</mat-error>
+              <mat-error *ngIf="secondForm.get('situationMatrimonialeValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreSituationMatrimoniale">
+            <mat-form-field class="w-100">
+              <mat-label>Autre situation à préciser</mat-label>
+              <input matInput formControlName="situationMatrimonialeValue">
+              <mat-error *ngIf="secondForm.get('situationMatrimonialeValue')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -160,7 +184,7 @@
             <mat-form-field class="w-100">
               <mat-label>Région</mat-label>
               <mat-select formControlName="region">
-                <mat-option *ngFor="let region of regions" [value]="region.id">{{ region.name }}</mat-option>
+                <mat-option *ngFor="let region of regions" [value]="region">{{ region.name }}</mat-option>
               </mat-select>
               <mat-error *ngIf="secondForm.get('region')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
@@ -169,7 +193,7 @@
             <mat-form-field class="w-100">
               <mat-label>Département</mat-label>
               <mat-select formControlName="departement">
-                <mat-option *ngFor="let departement of departements" [value]="departement.id">{{ departement.name }}</mat-option>
+                <mat-option *ngFor="let departement of departments" [value]="departement.id">{{ departement.name }}</mat-option>
               </mat-select>
               <mat-error *ngIf="secondForm.get('departement')?.hasError('required')">Ce champ est requis.</mat-error>
             </mat-form-field>
@@ -198,11 +222,12 @@
         </div>
         <div class="d-flex justify-content-between mt-3">
           <button mat-raised-button matStepperPrevious color="accent">Retour</button>
-          <button mat-raised-button color="primary" class="mx-2" (click)="save()" [disabled]="secondForm.invalid">Valider</button>
+          <button mat-raised-button matStepperNext color="primary" class="mx-2" [disabled]="secondForm.invalid">Suivant</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdForm" label="Exhaustivité du renseignement des données dans les dossiers">
+    <mat-step [stepControl]="thirdForm" label="Exhaustivité données">
+      <h4 class="mt-1">Exhaustivité du renseignement des données dans les dossiers</h4>
       <form [formGroup]="thirdForm">
         <div class="row mt-2">
           <div class="col w-100">
@@ -219,7 +244,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('contactPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['contactPatient'].touched && thirdForm.controls['contactPatient'].invalid && thirdForm.get('contactPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
         </div>
         <hr>
@@ -231,7 +256,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('contactProchePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['contactProchePatient'].touched && thirdForm.controls['contactProchePatient'].invalid && thirdForm.get('contactProchePatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
           <div class="col w-100">
             <mat-label>Adresse du patient</mat-label><br/>
@@ -239,7 +264,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('adressePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['adressePatient'].touched && thirdForm.controls['adressePatient'].invalid && thirdForm.get('adressePatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
         </div>
         <hr>
@@ -252,7 +277,7 @@
               <mat-radio-button [value]=NON>Non</mat-radio-button>
               <mat-radio-button [value]=NON_PRECIS>Non précisé</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('consentementPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['consentementPatient'].touched && thirdForm.controls['consentementPatient'].invalid && thirdForm.get('consentementPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
           <div class="col w-100">
             <mat-label>Stade clinique du patient (Stade OMS)</mat-label><br/>
@@ -260,7 +285,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('stadePatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['dateSuivanteConsultationPatient'].touched && thirdForm.controls['dateSuivanteConsultationPatient'].invalid && thirdForm.get('stadePatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
         </div>
         <hr>
@@ -272,7 +297,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('compteRenduPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['compteRenduPatient'].touched && thirdForm.controls['compteRenduPatient'].invalid && thirdForm.get('compteRenduPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
           <div class="col w-100">
             <mat-label>Date du diagnostic</mat-label><br/>
@@ -280,7 +305,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateDiagnosticPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['dateDiagnosticPatient'].touched && thirdForm.controls['dateDiagnosticPatient'].invalid && thirdForm.get('dateDiagnosticPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
         </div>
         <hr>
@@ -292,7 +317,7 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateDebutConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['dateDebutConsultationPatient'].touched && thirdForm.controls['dateDebutConsultationPatient'].invalid && thirdForm.get('dateDebutConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
           <div class="col w-100">
             <mat-label>Date de la consultation suivante</mat-label><br/>
@@ -300,14 +325,365 @@
               <mat-radio-button [value]=RENSEIGNE>Renseigné</mat-radio-button>
               <mat-radio-button [value]=NON_RENSEIGNE>Non renseigné</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf="thirdForm.controls['cniPatient'].touched && thirdForm.controls['cniPatient'].invalid && thirdForm.get('dateSuivanteConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
+            <mat-error *ngIf="thirdForm.controls['dateSuivanteConsultationPatient'].touched && thirdForm.controls['dateSuivanteConsultationPatient'].invalid && thirdForm.get('dateSuivanteConsultationPatient')?.hasError('required')">Ce champ est requis.</mat-error>
           </div>
         </div>
         <hr>
 
         <div class="d-flex justify-content-between mt-3">
           <button mat-raised-button matStepperPrevious color="accent">Retour</button>
-          <button mat-raised-button color="primary" class="mx-2" (click)="save()" [disabled]="thirdForm.invalid">Valider</button>
+          <button mat-raised-button matStepperNext color="primary" class="mx-2" [disabled]="thirdForm.invalid">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthForm" label="Tumeurs">
+      <h4 class="mt-1">Tumeurs</h4>
+      <form [formGroup]="fourthForm">
+        <div class="row mt-2">
+          <div class="col"></div>
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Localisation du cancer</mat-label><br/>
+            <mat-checkbox formControlName="localisationCancer">Autre</mat-checkbox>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Date du diagnostic</mat-label>
+              <input matInput formControlName="dateDiagnostic" type="date">
+              <mat-error *ngIf="fourthForm.get('dateDiagnostic')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="!autreLocalisationCancer">
+            <mat-form-field class="w-100">
+              <mat-label>Localisation du cancer</mat-label>
+              <mat-select formControlName="localisationCancerValue">
+                <mat-option *ngFor="let localisationCancer of localisationCancers" [value]="localisationCancer">{{ localisationCancer.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('localisationCancerValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreLocalisationCancer">
+            <mat-form-field class="w-100">
+              <mat-label>Autre localisation du cancer</mat-label>
+              <input matInput formControlName="localisationCancerValue">
+              <mat-error *ngIf="fourthForm.get('localisationCancerValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Type histologique</mat-label><br/>
+            <mat-checkbox formControlName="typeHistologique">Autre</mat-checkbox>
+          </div>
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Base du diagnostic</mat-label><br/>
+            <mat-checkbox formControlName="baseDiagnostic">Autre</mat-checkbox>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col" *ngIf="!autreTypeHistologique">
+            <mat-form-field class="w-100">
+              <mat-label>Type histologique</mat-label>
+              <mat-select formControlName="typeHistologiqueValue">
+                <mat-option *ngFor="let typeHistologique of typeHistologiques" [value]="typeHistologique">{{ typeHistologique.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('typeHistologiqueValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreTypeHistologique">
+            <mat-form-field class="w-100">
+              <mat-label>Autre type Histologique</mat-label>
+              <input matInput formControlName="typeHistologiqueValue">
+              <mat-error *ngIf="fourthForm.get('typeHistologiqueValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="!autreBaseDiagnostic">
+            <mat-form-field class="w-100">
+              <mat-label>Base du diagnostic</mat-label>
+              <mat-select formControlName="baseDiagnosticValue">
+                <mat-option *ngFor="let baseDiagnostic of basesDiagnostic" [value]="baseDiagnostic">{{ baseDiagnostic.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('baseDiagnosticValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreBaseDiagnostic">
+            <mat-form-field class="w-100">
+              <mat-label>Autre base diagnostic</mat-label>
+              <input matInput formControlName="baseDiagnosticValue">
+              <mat-error *ngIf="fourthForm.get('baseDiagnosticValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Grade</mat-label>
+              <mat-select formControlName="grade">
+                <mat-option *ngFor="let grade of grades" [value]="grade.id">{{ grade.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('grade')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Classification TNM (Taille tumeur)</mat-label>
+              <mat-select formControlName="ctnmTailleTumeur">
+                <mat-option *ngFor="let ctnmTailleTumeur of ctnmTailleTumeurs" [value]="ctnmTailleTumeur.id">{{ ctnmTailleTumeur.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('ctnmTailleTumeur')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Classification TNM (Atteinte ganglionnaire)</mat-label>
+              <mat-select formControlName="ctnmAtteinteGanglionnaire">
+                <mat-option *ngFor="let ctnmAtteinteGanglionnaire of ctnmAtteinteGanglionnaires" [value]="ctnmAtteinteGanglionnaire.id">{{ ctnmAtteinteGanglionnaire.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('ctnmAtteinteGanglionnaire')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Classification TNM (présence métastases)</mat-label>
+              <mat-select formControlName="ctnmMetastase">
+                <mat-option *ngFor="let ctnmMetastase of ctnmMetastases" [value]="ctnmMetastase.id">{{ ctnmMetastase.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('ctnmMetastase')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2 d-flex align-items-center justify-content-between">
+          <div class="col">
+            <mat-label>Stade clinique (Stade OMS)</mat-label><br>
+          </div>
+          <div class="col">
+            <mat-label>Statut hormonal : Récepteur œstrogène positif</mat-label><br/>
+            <mat-radio-group formControlName="recepteurOestrogene" class="d-flex align-items-center justify-content-between">
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Stade clinique (Stade OMS)</mat-label>
+              <mat-select formControlName="stadeOms">
+                <mat-option *ngFor="let stadeOms of stadesOms" [value]="stadeOms.id">{{ stadeOms.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('stadeOms')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100" *ngIf="autreRecepteurOestrogene == NON_PRECIS">
+              <mat-label>Valeur récepteur œstrogène</mat-label>
+              <input matInput formControlName="recepteurOestrogeneValue">
+              <mat-error *ngIf="fourthForm.get('recepteurOestrogeneValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Statut hormonal : Récepteur progestérone positif</mat-label><br/>
+            <mat-radio-group formControlName="recepteurProgesterone" >
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <mat-label>Statut hormonal : Récepteur HER2 positif</mat-label><br/>
+            <mat-radio-group formControlName="recepteurHer2" >
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100" *ngIf="autreRecepteurProgesterone == NON_PRECIS">
+              <mat-label>Valeur récepteur progestérone</mat-label>
+              <input matInput formControlName="recepteurProgesteroneValue">
+              <mat-error *ngIf="fourthForm.get('recepteurProgesteroneValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100" *ngIf="autreRecepteurHer2 == NON_PRECIS">
+              <mat-label>Valeur récepteur HER2</mat-label>
+              <input matInput formControlName="recepteurHer2Value">
+              <mat-error *ngIf="fourthForm.get('recepteurHer2Value')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col w-100">
+            <mat-label>Statut hormonal : Triple négatif</mat-label><br/>
+            <mat-radio-group formControlName="tripleNegatif">
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="col w-100">
+            <mat-label>Statut du cancer</mat-label><br/>
+            <mat-radio-group formControlName="statutCancer" >
+              <mat-radio-button value="primitif">Primitif</mat-radio-button>
+              <mat-radio-button value="recidive">Récidive</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-3">
+          <div class="col w-100">
+            <mat-label>Existence de métastases</mat-label><br/>
+            <mat-radio-group formControlName="existenceMetastase" >
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="col w-100 d-flex align-items-center justify-content-between">
+            <ng-container *ngIf="existenceMetastase">
+              <mat-label>Autre localisation</mat-label><br/>
+              <mat-checkbox formControlName="existenceMetastaseAutreValue">Autre</mat-checkbox>
+            </ng-container>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col" *ngIf="existenceMetastase && autreExistenceMetastase != 'autre'">
+            <mat-form-field class="w-100">
+              <mat-label>Préciser la localisation</mat-label><br/>
+              <mat-select formControlName="existenceMetastaseValue">
+                <mat-option *ngFor="let existenceMetastase of existencesMetastasesAutres" [value]="existenceMetastase">{{ existenceMetastase.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fourthForm.get('existenceMetastaseValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+           </div>
+          <div class="col" *ngIf="existenceMetastase && autreExistenceMetastase == 'autre'">
+            <mat-form-field class="w-100">
+              <mat-label>Autre localisation</mat-label><br/>
+              <input matInput formControlName="existenceMetastaseValue">
+              <mat-error *ngIf="fourthForm.get('existenceMetastaseValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Traitement</mat-label>
+              <mat-select formControlName="traitement" multiple>
+                <mat-option *ngFor="let traitement of traitements" [value]="traitement">{{ traitement.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondForm.get('traitement')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Date de début du traitement</mat-label>
+              <input matInput formControlName="dateDebutTraitement" type="date">
+              <mat-error *ngIf="form.get('dateDebutTraitement')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="w-100">
+              <mat-label>Lieu de traitement</mat-label>
+              <input matInput formControlName="lieuTraitement">
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Causes du non début de traitement</mat-label>
+              <mat-select formControlName="causeNonDebutTraitement" multiple>
+                <mat-option *ngFor="let traitement of nonTraitements" [value]="traitement">{{ traitement.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button mat-raised-button matStepperPrevious color="accent">Retour</button>
+          <button mat-raised-button matStepperNext color="primary" class="mx-2" [disabled]="fourthForm.invalid">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fifthForm" label="Suivi patient">
+      <h4 class="mt-1">Suivi du patient</h4>
+      <form [formGroup]="fifthForm">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col d-flex justify-content-between">
+            <mat-label>Autre cause de décès</mat-label><br/>
+            <mat-checkbox formControlName="etatPatient">Autre</mat-checkbox>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <mat-form-field class="col w-100">
+            <mat-label>Date d'ouverture du dossier du patient</mat-label>
+            <input matInput formControlName="date" type="date">
+            <mat-error *ngIf="fifthForm.get('date')?.hasError('required')">Ce champ est requis.</mat-error>
+          </mat-form-field>
+          <div class="col" *ngIf="!autreEtatPatient">
+            <mat-form-field class="w-100">
+              <mat-label>Etat du patient aux dernières nouvelles</mat-label>
+              <mat-select formControlName="etatPatientValue">
+                <mat-option *ngFor="let etatPatient of etatPatients" [value]="etatPatient">{{ etatPatient.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fifthForm.get('etatPatientValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col" *ngIf="autreEtatPatient">
+            <mat-form-field class="w-100">
+              <mat-label>Autre état du patient</mat-label>
+              <input matInput formControlName="etatPatientValue">
+              <mat-error *ngIf="fifthForm.get('etatPatientValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col w-100">
+            <mat-label>Perdu(e) de vue</mat-label><br/>
+            <mat-radio-group formControlName="perduDeVue">
+              <mat-radio-button [value]="OUI">Oui</mat-radio-button>
+              <mat-radio-button [value]="NON">Non</mat-radio-button>
+              <mat-radio-button [value]="NON_PRECIS">Non précisé</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="w-100" *ngIf="autrePerteDeVue == NON_PRECIS">
+              <mat-label>Raison perte suivi</mat-label>
+              <input matInput formControlName="perduDeVueValue">
+              <mat-error *ngIf="fifthForm.get('perduDeVueValue')?.hasError('required')">Ce champ est requis.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <h4>INFORMATIONS COMPLEMENTAIRES</h4>
+          <mat-form-field class="w-100">
+            <mat-label>Observations</mat-label>
+            <textarea matInput formControlName="infosComplementaires" rows="5"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button mat-raised-button matStepperPrevious color="accent">Retour</button>
+          <button mat-raised-button color="primary" class="mx-2" (click)="save()" [disabled]="fifthForm.invalid">Valider</button>
         </div>
       </form>
     </mat-step>

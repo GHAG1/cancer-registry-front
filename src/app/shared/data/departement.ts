@@ -1,4 +1,4 @@
-[
+export let departements = [
   {
     "Dakar": [
       {"id": 1, "name": "Pikine"},
@@ -64,6 +64,13 @@
       {"id": 1, "name": "Kaolack"},
       {"id": 2, "name": "Guinguinéo"},
       {"id": 3, "name": "Nioro du Rip"}
+    ]
+  },
+  {
+    "Sédhiou": [
+      {"id": 1, "name": "Sédhiou"},
+      {"id": 2, "name": "Bounkiling"},
+      {"id": 3, "name": "Goudomp"}
     ]
   },
   {

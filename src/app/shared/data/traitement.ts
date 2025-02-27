@@ -1,4 +1,4 @@
-[
+export const traitements = [
   {"id": 1, "name": "Traitement non encore débuté"},
   {"id": 2, "name": "Chirurgie"},
   {"id": 3, "name": "Chimiothérapie"},

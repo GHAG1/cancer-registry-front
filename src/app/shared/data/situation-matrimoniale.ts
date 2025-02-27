@@ -1,4 +1,4 @@
-[
+export const situationMatrimoniales = [
   {"id": 1, "name": "Marié(e)"},
   {"id": 2, "name": "Célibataire"},
   {"id": 3, "name": "Divorcé(e)"},

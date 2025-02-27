@@ -1,4 +1,4 @@
-[
+export const services = [
   {"id": 1, "name": "Anatomopathologie"},
   {"id": 2, "name": "Buccodentaire"},
   {"id": 3, "name": "Cancérologie"},

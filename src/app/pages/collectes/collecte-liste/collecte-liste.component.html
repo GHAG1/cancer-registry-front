@@ -9,4 +9,47 @@
     </button>
   </mat-toolbar>
 
+  <div class="p-5">
+    <mat-card class="p-3 bg-primary-subtle">
+      <table mat-table [dataSource]="collectes" class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="nomCompletRegistraire">
+          <th mat-header-cell *matHeaderCellDef> Nom complet du registraire</th>
+          <td mat-cell *matCellDef="let collecte"> {{ collecte.identification.nomCompletRegistraire }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nomCompletMedecinReferent">
+          <th mat-header-cell *matHeaderCellDef> Nom complet du médecin</th>
+          <td mat-cell *matCellDef="let collecte"> {{ collecte.identification.nomCompletMedecinReferent }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nomCompletPatient">
+          <th mat-header-cell *matHeaderCellDef> Nom complet du patient </th>
+          <td mat-cell *matCellDef="let collecte"> {{ collecte.infosPatient.nomComplet }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroDossier">
+          <th mat-header-cell *matHeaderCellDef> Numéro de dossier </th>
+          <td mat-cell *matCellDef="let collecte"> {{ collecte.identification.numeroDossier }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOuvertureDossier">
+          <th mat-header-cell *matHeaderCellDef>Date d'ouverture du dossier </th>
+          <td mat-cell *matCellDef="let collecte"> {{ collecte.identification.dateOuvertureDossier | date:'dd/MM/yyyy':'fr-FR'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Détails </th>
+          <td mat-cell *matCellDef="let collecte">
+            <button mat-button (click)="details(collecte)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card>
+  </div>
+
 </div>

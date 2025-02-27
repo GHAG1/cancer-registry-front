@@ -1,4 +1,4 @@
-[
+export const etatPatients = [
   {"id": 1, "name": "Rémission complète"},
   {"id": 2, "name": "Rémission partielle"},
   {"id": 3, "name": "Récidive"},
